@@ -61,7 +61,7 @@ function App () {
         // console.log(auth)
       response = await axios({
         method: 'post',
-        url: `http://localhost:5050/api/g_variants`,
+        url: `https://beacon-network-backend-test.ega-archive.org/beacon-network/v2.0.0/g_variants`,
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${auth.userData.access_token}`
@@ -72,8 +72,8 @@ function App () {
     } else {
       response = await axios({
         method: 'post',
-        //url: `http://localhost:5050/api/g_variants?start=${arr[1]}&alternateBases=${arr[2]}&referenceBases=${arr[3]}&referenceName=${arr[0]}`,
-        url: `http://localhost:5050/api/g_variants`,
+        //url: `https://beacon-apis-test.ega-archive.org/api/g_variants?start=${arr[1]}&alternateBases=${arr[2]}&referenceBases=${arr[3]}&referenceName=${arr[0]}`,
+        url: `https://beacon-network-backend-test.ega-archive.org/beacon-network/v2.0.0/g_variants`,
         headers: {
           'Content-Type': 'application/json'
         },
