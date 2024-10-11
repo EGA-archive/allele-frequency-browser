@@ -1,0 +1,19 @@
+# docker-compose.yml
+
+version: "3.8"
+
+services:
+
+  client:
+    build:
+      context: ./client
+    command: [ "yarn", "start" ]
+    container_name: perusable-client
+    depends_on:
+      - server
+    ports:
+      - 3000:3000
+    volumes:
+      - ./client:/usr/src/app
+
+  
