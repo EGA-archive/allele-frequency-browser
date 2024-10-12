@@ -11,6 +11,11 @@
   height: 30px;
 }
 
+.count{
+  position: absolute;
+  right: 50px;
+}
+
 .footer{
   width: 100vw;
   border-top: 10px solid #7B1B58;

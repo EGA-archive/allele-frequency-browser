@@ -120,7 +120,6 @@ function App () {
           <ResultList results={results} /> {/* changed */}
         </Col>
         </Row>
-        <Footer></Footer>
     </Container>
     
     
