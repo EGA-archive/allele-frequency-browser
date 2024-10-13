@@ -29,6 +29,7 @@ function Search ({ search }) { // changed
       {({
         handleChange,
         handleSubmit,
+        setFieldValue,
         values
       }) => (
         <Form noValidate onSubmit={handleSubmit}>
@@ -49,21 +50,23 @@ function Search ({ search }) { // changed
                 
                 <Col lg={2}>
                 <Form.Label htmlFor="points">Ref Genome</Form.Label>
-                <Form.Select value={values.genome}>
-                      <option>...</option>
-                      <option value="1">hg38</option>
-                      <option value="2">hg37</option>
-                      <option value="3">NCBI36</option>
-                      </Form.Select>
+                
+                <Form.Select
+                    name='genome'
+                    onChange={handleChange}
+                    value={values.genome}
+                  >
+                    <option value='hg38'>hg38</option>
+                  </Form.Select>
                     </Col>
                     <Col lg={2}>
                     <Form.Label>Cohort</Form.Label>
             
-                    <Form.Select value={values.cohort}>
-                      <option>...</option>
-                      <option value="c1">Cohort 1</option>
-                      <option value="c2">Cohort 2</option>
-                      <option value="c3">Cohort 3</option>
+                    <Form.Select 
+                    name='cohort'
+                    onChange={handleChange}
+                    value={values.cohort}>
+                      <option value="gdi">GDI</option>
                       </Form.Select>
                     </Col>
                     </Row>

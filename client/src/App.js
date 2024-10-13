@@ -19,6 +19,7 @@ function App () {
   // new
   const [results, setResults] = useState([]);
   const [isQuizePageVisible, setIsQuizePageVisible] = useState(false)
+  const [isLoading, setLoading] = useState(false)
   const auth = useAuth()
 
   const onClickHandler = () => {
@@ -29,6 +30,7 @@ function App () {
 
   // new
   const search = async (cohort, variant, genome) => {
+    setLoading(true)
     let jsonData1 = {}
     var arr = variant.split("-");
     //console.log(auth.userData.access_token);
@@ -82,11 +84,12 @@ function App () {
     }
       console.log(response)
       setResults(response.data.response.resultSets);
+      setLoading(false)
     } catch (error) {
       console.error(error);
     }
   };
-
+  
   return (
     <Container className='pt-3'>
       <Row>
@@ -117,7 +120,8 @@ function App () {
           </Row>
       <Row>
       <Col lg={8}>
-          <ResultList results={results} /> {/* changed */}
+      {isLoading === true && <div>Loading...</div>}
+          {isLoading === false && <ResultList results={results} />} {/* changed */}
         </Col>
         </Row>
     </Container>

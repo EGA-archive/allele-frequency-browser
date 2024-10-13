@@ -1,6 +1,6 @@
 // client/src/components/ResultList.js
 
-import React from 'react';
+import React, { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Box } from '@mui/system';
 import Accordion from 'react-bootstrap/Accordion';
@@ -8,6 +8,7 @@ import Accordion from 'react-bootstrap/Accordion';
 // changed
 function ResultList ({ results }, props) {
   // console.log(results)
+  
   const columns = [  
     { field: 'population', headerName: 'Ancestry', flex: 3, headerClassName: 'super-app-theme--header' },
     { field: 'alleleCount', headerName: 'Allele Count', flex: 3, headerClassName: 'super-app-theme--header' },
@@ -28,8 +29,11 @@ function ResultList ({ results }, props) {
   var elementitos = []
   const aggregated_rows = []
   var arrayElementitos = ''
+  const addedBeacons = []
+  var isresponse = 'False'
+  var total_count = 0
   var j = 1
-  const resultItems = results.map(result => {if (result.results) {j+=1;rows=[]; dataset=result.id; beacon=result.beaconId;result.results.map(variant => {if (variant.frequencyInPopulations) { variant.frequencyInPopulations.map(frequencyInPopulation => frequencyInPopulation.frequencies.map(frequency =>
+  const resultItems = results.map(result => {if (result.results) {isresponse='True';rows=[]; dataset=result.id;result.results.map(variant => {if (variant.frequencyInPopulations) { variant.frequencyInPopulations.map(frequencyInPopulation => frequencyInPopulation.frequencies.map(frequency =>
     
     rows.push({
       id: i+=1,
@@ -68,24 +72,25 @@ function ResultList ({ results }, props) {
       rows={rows}
       readOnly={true}
 
-  />;if (result.results !== undefined && result.results.length !== 0){if (result.beaconId === beacon) {last_beacon=result.beaconId;last_count=result.resultsCount;count+=result.resultsCount;elementito =
+  />;if (result.results !== undefined && result.results.length !== 0){if (result.beaconId === beacon || beacon === '') {last_beacon=result.beaconId;last_count=result.resultsCount;total_count+=last_count;count+=result.resultsCount;elementito =
     <Accordion.Item eventKey={dataset}><Accordion.Header>{result.id}<span class="count">{last_count}</span></Accordion.Header>
     <Accordion.Body>
     <div>{table}</div>
     </Accordion.Body>
-    </Accordion.Item>;elementitos.push(elementito)}else{arrayElementitos = elementitos.map((el) => <div>{el}</div>);elemento = <Accordion defaultActiveKey={['0']} alwaysOpen><Accordion.Item eventKey="0">
-    <Accordion.Header>{result.beaconId}<span class="count">{count}</span></Accordion.Header>
+    </Accordion.Item>;elementitos.push(elementito);beacon=result.beaconId;console.log(beacon);console.log(dataset)}else{arrayElementitos = elementitos.map((el) => <div>{el}</div>);elemento = <Accordion defaultActiveKey={['go']} alwaysOpen><Accordion.Item eventKey="what">
+    <Accordion.Header>{beacon}<span class="count">{count}</span></Accordion.Header><Accordion.Body>
       {arrayElementitos}
+      </Accordion.Body>
       </Accordion.Item>
-  </Accordion>; count=result.resultsCount;elementitos = []; elementito =
+  </Accordion>;beacon=result.beaconId;count=result.resultsCount;elementitos = []; last_count=result.resultsCount; total_count+=last_count;elementito =
     <Accordion.Item eventKey={dataset}><Accordion.Header>{result.id}<span class="count">{last_count}</span></Accordion.Header>
     <Accordion.Body>
     <div>{table}</div>
     </Accordion.Body>
-    </Accordion.Item>;elementitos.push(elementito)}aggregated_rows.push(elemento)}});
-  j+=1
+    </Accordion.Item>;elementitos.push(elementito);console.log(beacon);console.log(dataset);aggregated_rows.push(elemento)}}});
+  console.log(elementitos)
   arrayElementitos = elementitos.map((el) => <div>{el}</div>);
-  elemento = <Accordion defaultActiveKey={['0']} alwaysOpen>
+  elemento = <Accordion defaultActiveKey={['sure']} alwaysOpen>
     <Accordion.Item eventKey="0">
     <Accordion.Header><div class="accordion">{last_beacon}<span class="count">{count}</span></div></Accordion.Header><Accordion.Body>
       {arrayElementitos}
@@ -94,20 +99,22 @@ function ResultList ({ results }, props) {
   </Accordion>;
   aggregated_rows.push(elemento)
   const arrayDataItems = aggregated_rows.map((course) => <div>{course}</div>);
-  console.log(arrayDataItems)
  // document.getElementById('clickme').onclick = sort_by_key(results, 'id');
   // document.getElementById('clickme2').onclick = sort_by_key(results, 'id');
   // changed
   return (
     <div id="eldiv">
-    {results && results.length === 0 && <p></p>}
     {results && results.length !== 0 &&
+    
     <Box sx={{ margin: 2,
       width: '145%',backgroundColor: 'white',
       '& .super-app-theme--header': {
         backgroundColor: '#7B1B58',
         color: 'white'
       }, }}>
+              <p className='lead mt-2'>
+        The query made exists as <b>{isresponse}</b> with a total number of results of <b>{total_count}</b>.
+      </p>
         {arrayDataItems}</Box>}
       {!results && <p>Search using the left panel.</p>}
     </div>
