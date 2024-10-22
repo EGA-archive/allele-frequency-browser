@@ -33,6 +33,8 @@ function App () {
     setLoading(true)
     let jsonData1 = {}
     var arr = variant.split("-");
+    var end = parseInt(arr[1]) + 1
+    var finalend = end.toString()
     //console.log(auth.userData.access_token);
     // console.log(auth)
     try {
@@ -45,13 +47,14 @@ function App () {
         "alternateBases": arr[2],
     "referenceBases": arr[3],
 "start": arr[1],
+"end": finalend,
             "referenceName": arr[0]
 },
           filters: [],
           includeResultsetResponses: 'ALL',
           pagination: {
             skip: 0,
-            limit: 0
+            limit: 1
           },
           testMode: false,
           requestedGranularity: 'record'
@@ -63,7 +66,7 @@ function App () {
         // console.log(auth)
       response = await axios({
         method: 'post',
-        url: `https://beacon-network-backend-test.ega-archive.org/beacon-network/v2.0.0/g_variants`,
+        url: `http://localhost:8080/beacon-network/v2.0.0/g_variants`,
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${auth.userData.access_token}`
@@ -73,9 +76,9 @@ function App () {
       )
     } else {
       response = await axios({
-        method: 'post',
-        //url: `https://beacon-apis-test.ega-archive.org/api/g_variants?start=${arr[1]}&alternateBases=${arr[2]}&referenceBases=${arr[3]}&referenceName=${arr[0]}`,
-        url: `https://beacon-network-backend-test.ega-archive.org/beacon-network/v2.0.0/g_variants`,
+        method: 'get',
+        url: `http://localhost:8080/beacon-network/v2.0.0/g_variants?start=${arr[1]}&end=${finalend}&alternateBases=${arr[2]}&referenceBases=${arr[3]}&referenceName=${arr[0]}`,
+        //url: `http://localhost:8080/beacon-network/v2.0.0/beacon-network/v2.0.0/g_variants`,
         headers: {
           'Content-Type': 'application/json'
         },

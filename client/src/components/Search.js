@@ -56,7 +56,7 @@ function Search ({ search }) { // changed
                     onChange={handleChange}
                     value={values.genome}
                   >
-                    <option value='hg38'>hg38</option>
+                    <option value='hg37'>hg37</option>
                   </Form.Select>
                     </Col>
                     <Col lg={2}>
@@ -66,7 +66,7 @@ function Search ({ search }) { // changed
                     name='cohort'
                     onChange={handleChange}
                     value={values.cohort}>
-                      <option value="gdi">GDI</option>
+                      <option value="GoE">GoE</option>
                       </Form.Select>
                     </Col>
                     </Row>
