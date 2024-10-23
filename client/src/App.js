@@ -4,7 +4,7 @@ import React, { useState } from 'react'; // changed
 
 import './App.css';
 
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, Nav } from 'react-bootstrap';
 
 import ResultList from './components/ResultList';
 import Search from './components/Search';
@@ -12,6 +12,8 @@ import Search from './components/Search';
 import SignInForm from './components/SignIn/SignInForm'
 
 import { useAuth } from 'oidc-react'
+
+import Navbar from 'react-bootstrap/Navbar';
 
 import Footer from './components/Footer.js'
 
@@ -94,14 +96,17 @@ function App () {
   };
   
   return (
-    <Container className='pt-3'>
-      <Row>
+    <div>
+      <Navbar style={{backgroundImage:"url('/../HeaderBackgroundsvg.svg')",backgroundSize:"cover",height:"111px",width:"100vw",borderWidth:"0"}}>
+      <a class="gdilogo" onClick={() => {window.location.href="/"}}><img src="/../GDILogowhite.png" class="gdilogo" ></img></a>
+      <h1 class="allele">Allele Frequency Browser</h1></Navbar>
+    <Container>
 
-      <Col lg={3}>
-      <img class="GDI-logo" src="https://gdi.onemilliongenomes.eu/images/gdi-logo.svg" alt="GDI"></img>
-      </Col>
+      <Row>
+      <Col lg={3}></Col>
+
       <Col lg={7}>
-      <h1 class="allele">Allele Frequency Browser</h1>
+      
 
       </Col>
       <Col>
@@ -114,20 +119,18 @@ function App () {
       {!auth.userData && isQuizePageVisible && <SignInForm/>}
       </Col>
       <p className='lead mt-5'>
-        Use the controls below to search for a variant and filter the results.
+        Search for your variant:
       </p>
 
           <Search search={search} /> {/* changed */}
           
 
           </Row>
-      <Row>
-      <Col lg={8}>
-      {isLoading === true && <div>Loading...</div>}
+
+      {isLoading === true && <div class="loader"></div>}
           {isLoading === false && <ResultList results={results} />} {/* changed */}
-        </Col>
-        </Row>
     </Container>
+    </div>
     
     
   );
