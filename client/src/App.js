@@ -20,6 +20,7 @@ import Footer from './components/Footer.js'
 function App () {
   // new
   const [results, setResults] = useState([]);
+  const [metaresults, setMetaResults] = useState([]);
   const [isQuizePageVisible, setIsQuizePageVisible] = useState(false)
   const [isLoading, setLoading] = useState(false)
   const auth = useAuth()
@@ -39,6 +40,23 @@ function App () {
     var finalend = end.toString()
     //console.log(auth.userData.access_token);
     // console.log(auth)
+
+    try {
+      let metaresponse;
+      metaresponse = await axios({
+        method: 'get',
+        url: `http://localhost:8080/beacon-network/v2.0.0/`,
+        //url: `http://localhost:8080/beacon-network/v2.0.0/beacon-network/v2.0.0/g_variants`,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: jsonData1
+      })
+      console.log(metaresponse.data.responses)
+      setMetaResults(metaresponse.data.responses);
+    } catch (error) {
+      console.error(error);
+    }
     try {
       jsonData1 = {
         meta: {
@@ -128,7 +146,7 @@ function App () {
           </Row>
 
       {isLoading === true && <div class="loader"></div>}
-          {isLoading === false && <ResultList results={results} />} {/* changed */}
+          {isLoading === false && <ResultList results={results} metaresults={metaresults} />} {/* changed */}
     </Container>
     </div>
     

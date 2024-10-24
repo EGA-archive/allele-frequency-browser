@@ -42,6 +42,7 @@ function Search ({ search }) { // changed
                     <Form.Control
                     type="search"
                     name="variant"
+                    style={{marginBottom: "20px"}}
                     className="shadow-none"
                     placeholder="Search for a variant (e.g. 13-32398489-A-T)"
                     value={values.genres}
@@ -59,7 +60,7 @@ function Search ({ search }) { // changed
                     className="shadow-none"
                     value={values.genome}
                   >
-                    <option value='hg37'>hg37</option>
+                    <option value='GRCh37'>GRCh37</option>
                   </Form.Select>
                     </Col>
                     <Col class="cohort">
@@ -70,15 +71,18 @@ function Search ({ search }) { // changed
                     className="shadow-none"
                     onChange={handleChange}
                     value={values.cohort}>
-                      <option value="GoE">GoE</option>
+                      <option value="All">All</option>
+                      <option value="COVID">COVID</option>
                       </Form.Select>
+
                     </Col>
-                    <Col>
+                    <div style={{width:"150px", display:"inline"}}>
               <button className="button1" type='submit' variant='primary'><div class='lupared'></div>Search</button>
               {/*<button className="button2 mt-3 ms-2" type='submit' variant='primary' onClick={() => {window.location.href="/"}}>
       Reset
     </button>*/}
-            </Col>
+            </div>
+
                     </Row>
 
 
