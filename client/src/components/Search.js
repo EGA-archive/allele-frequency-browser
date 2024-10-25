@@ -3,7 +3,7 @@
 import React from 'react';
 
 import { Formik } from 'formik';
-import { Col, Form, Row, InputGroup } from 'react-bootstrap';
+import { Col, Form, Row } from 'react-bootstrap';
 
 
 

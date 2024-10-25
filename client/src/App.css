@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -37,14 +38,18 @@ input:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
+.parentwrapper{
+  min-height: 95vh;
+}
+
 .footer{
   width: 100vw;
-  border-top: 10px solid #7B1B58;
-  position:absolute;
-  left:0;
-  bottom:0;
-  right:0;
-  background-color: #F5F5F5 !important;
+  height: Fixed (49px)px;
+  padding: 12px 143px 12px 143px;
+  gap: 174px;
+  opacity: 0px;
+  background: #E2E2E2;
+
 }
 
 .lsaai{
@@ -54,8 +59,8 @@ input:-webkit-autofill:active{
 
 body{
   height: 100vh;
+  min-height: 100%;
 }
-
 
 .allele{
 text-align: center;
@@ -146,8 +151,9 @@ cursor: pointer;
 }
 .beaconized{
   background: #70154C14;
-  border-width: 0px 0px 0px 0px;
+  border-width: 0.5px 0px 0px 0px;
   border-style: solid;
+  border-top-color: #70154C;
   border-bottom-color: #70154C;
 }
 table {

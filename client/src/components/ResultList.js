@@ -1,10 +1,8 @@
 // client/src/components/ResultList.js
 
-import React, { useState } from 'react';
-import { DataGrid } from '@mui/x-data-grid';
+import React from 'react';
 import { Box } from '@mui/system';
-import Accordion from 'react-bootstrap/Accordion';
-import { Col, Form, Row, InputGroup } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 
 // changed
 function ResultList ({ results, metaresults}) {
@@ -24,7 +22,7 @@ function ResultList ({ results, metaresults}) {
   var alleleCHet=''
   var alleleCHom=''
   var popu =''
-  const resultItems = results.map(result => {if (result.results) {exists='True';isresponse='False';rows=[]; dataset=result.id;result.results.map(variant => {if (variant.frequencyInPopulations) {isresponse='True';variant.frequencyInPopulations.map(frequencyInPopulation => frequencyInPopulation.frequencies.map(frequency =>
+  const resultItems = results.map(result => {if (result.results) {isresponse='False';rows=[]; dataset=result.id;result.results.map(variant => {if (variant.frequencyInPopulations) {exists='True';isresponse='True';variant.frequencyInPopulations.map(frequencyInPopulation => frequencyInPopulation.frequencies.map(frequency =>
     {if (frequency.alleleCount instanceof Array){alleleC=frequency.alleleCount[0]}else{alleleC=frequency.alleleCount};if (frequency.alleleCountHeterozygous instanceof Array){alleleCHet=frequency.alleleCountHeterozygous[0]}else{alleleCHet=frequency.alleleCountHeterozygous};if (frequency.alleleCountHomozygous instanceof Array){alleleCHom=frequency.alleleCountHomozygous[0]}else{alleleCHom=frequency.alleleCountHomozygous};if (frequency.population === 'COVID_pop11_fin_2'){popu='Finnish'}else if(frequency.population === 'COVID_pop11_fin_1'){popu='Finnish'}else if(frequency.population === 'COVID_pop12_ita_1'){popu='Italian'}else if(frequency.population === 'COVID_pop12_ita_2'){popu='Italian'}else if(frequency.population === 'COVID_pop13_ger_1'){popu='German'}else if(frequency.population === 'COVID_pop13_ger_2'){popu='German'};rows.push({
       id: i+=1,
       population: popu, 
@@ -41,7 +39,7 @@ function ResultList ({ results, metaresults}) {
   // changed
   return (
     <Row>
-    {results && results.length !== 0 &&
+    {results && exists === 'True' &&
     
     <Box sx={{marginTop: '50px',backgroundColor: 'white',
       '& .super-app-theme--header': {
@@ -55,7 +53,7 @@ function ResultList ({ results, metaresults}) {
       <table style={{width: "100%"}}>
         <tr><th>Beacon</th><th style={{width: "20%"}}>Dataset</th><th style={{width: "11%"}}>Ancestry</th><th style={{width: "11%"}}>Allele Count</th><th style={{width: "11%"}}>Allele Number</th><th style={{width: "16%"}}>Homozygous/ Hemizygous Count</th><th style={{width: "16%"}}>Heterozygous Count</th><th style={{width: "11%"}}>Allele Frequency</th></tr>
         {addedBeacons}</table></div></Box>}
-      {!results && <p>Search using the left panel.</p>}
+      {results.length !== 0 && exists === 'False' && <p>No results found.</p>}
       </Row>
     
   );

@@ -4,7 +4,7 @@ import React, { useState } from 'react'; // changed
 
 import './App.css';
 
-import { Col, Container, Row, Nav } from 'react-bootstrap';
+import { Col, Container, Row} from 'react-bootstrap';
 
 import ResultList from './components/ResultList';
 import Search from './components/Search';
@@ -64,17 +64,17 @@ function App () {
         },
         query: {
           requestParameters: {
-        "alternateBases": arr[2],
-    "referenceBases": arr[3],
+        "alternateBases": arr[3],
+    "referenceBases": arr[2],
 "start": arr[1],
 "end": finalend,
             "referenceName": arr[0]
 },
           filters: [],
-          includeResultsetResponses: 'ALL',
+          includeResultsetResponses: 'HIT',
           pagination: {
             skip: 0,
-            limit: 1
+            limit: 10
           },
           testMode: false,
           requestedGranularity: 'record'
@@ -97,8 +97,8 @@ function App () {
     } else {
       response = await axios({
         method: 'get',
-        url: `http://localhost:8080/beacon-network/v2.0.0/g_variants?start=${arr[1]}&end=${finalend}&alternateBases=${arr[2]}&referenceBases=${arr[3]}&referenceName=${arr[0]}`,
-        //url: `http://localhost:8080/beacon-network/v2.0.0/beacon-network/v2.0.0/g_variants`,
+        url: `http://localhost:8080/beacon-network/v2.0.0/g_variants?start=${arr[1]}&end=${finalend}&alternateBases=${arr[3]}&referenceBases=${arr[2]}&referenceName=${arr[0]}`,
+        //url: `http://localhost:8080/beacon-network/v2.0.0/g_variants`,
         headers: {
           'Content-Type': 'application/json'
         },
@@ -115,8 +115,9 @@ function App () {
   
   return (
     <div>
-      <Navbar style={{backgroundImage:"url('/../HeaderBackgroundsvg.svg')",backgroundSize:"cover",height:"111px",width:"100vw",borderWidth:"0"}}>
-      <a class="gdilogo" onClick={() => {window.location.href="/"}}><img src="/../GDILogowhite.png" class="gdilogo" ></img></a>
+    <div class="parentwrapper">
+      <Navbar style={{backgroundImage:"url('/../HeaderBackgroundsvg.svg')",backgroundSize:"cover",height:"111px",width:"100vw",borderWidth:"0", position: "sticky", top: "0", zIndex: "2"}}>
+      <a class="gdilogo" onClick={() => {window.location.href="/"}}><img src="/../GDILogowhite.png" class="gdilogo" alt="gdilogo"></img></a>
       <h1 class="allele">Allele Frequency Browser</h1></Navbar>
     <Container>
 
@@ -148,6 +149,8 @@ function App () {
       {isLoading === true && <div class="loader"></div>}
           {isLoading === false && <ResultList results={results} metaresults={metaresults} />} {/* changed */}
     </Container>
+    </div>
+    <Footer/>
     </div>
     
     
