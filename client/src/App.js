@@ -36,7 +36,7 @@ function App () {
     setLoading(true)
     let jsonData1 = {}
     var arr = variant.split("-");
-    var end = parseInt(arr[1]) + 1
+    if (arr[2].length === 1){var end = parseInt(arr[1]) + 1}else{var end = parseInt(arr[1]) + arr[2].length}
     var finalend = end.toString()
     //console.log(auth.userData.access_token);
     // console.log(auth)
