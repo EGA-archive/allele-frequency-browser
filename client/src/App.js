@@ -36,8 +36,8 @@ function App () {
     setLoading(true)
     let jsonData1 = {}
     var arr = variant.split("-");
-    if (arr[2].length === 1){var end = parseInt(arr[1]) + 1}else{var end = parseInt(arr[1]) + arr[2].length}
-    var finalend = end.toString()
+    if (arr[2].length === 1){var start = parseInt(arr[1]) - 1}else{var start = parseInt(arr[1]) - 1 + arr[2].length}
+    var finalstart = start.toString()
     //console.log(auth.userData.access_token);
     // console.log(auth)
 
@@ -66,8 +66,8 @@ function App () {
           requestParameters: {
         "alternateBases": arr[3],
     "referenceBases": arr[2],
-"start": arr[1],
-"end": finalend,
+"start": finalstart,
+"end": arr[1],
             "referenceName": arr[0]
 },
           filters: [],
@@ -97,7 +97,7 @@ function App () {
     } else {
       response = await axios({
         method: 'get',
-        url: `https://af-gdi-bn-api-demo.ega-archive.org/beacon-network/v2.0.0/g_variants?start=${arr[1]}&end=${finalend}&alternateBases=${arr[3]}&referenceBases=${arr[2]}&referenceName=${arr[0]}`,
+        url: `https://af-gdi-bn-api-demo.ega-archive.org/beacon-network/v2.0.0/g_variants?start=${finalstart}&end=${arr[1]}&alternateBases=${arr[3]}&referenceBases=${arr[2]}&referenceName=${arr[0]}`,
         //url: `http://localhost:8080/beacon-network/v2.0.0/g_variants`,
         headers: {
           'Content-Type': 'application/json'
