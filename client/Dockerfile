@@ -1,17 +1,17 @@
 # client/Dockerfile
 
-FROM node:19-alpine
+FROM node:19.0-alpine
 
-RUN [ "mkdir", "-p", "/usr/src/app" ]
+# set working directory
+WORKDIR ./client
 
-WORKDIR /usr/src/app
+# add _/usr/src/app/node_modules/.bin_ to $PATH
+ENV PATH /client/node_modules/.bin:$PATH
 
-ENV PATH /usr/src/app/node_modules/.bin:$PATH
+# install app dependencies
+COPY package.json .
+COPY yarn.lock .
+COPY public ./public
+COPY src ./src
 
-COPY package.json /usr/src/app/package.json
-
-COPY yarn.lock /usr/src/app/yarn.lock
-
-RUN [ "yarn", "install", "--production" ]
-
-COPY . /usr/src/app
+RUN yarn install --production
