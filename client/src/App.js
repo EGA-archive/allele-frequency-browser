@@ -21,6 +21,7 @@ function App () {
   // new
   const [results, setResults] = useState([]);
   const [metaresults, setMetaResults] = useState([]);
+  const [finalstart, setFinalStart] = useState([]);
   const [isQuizePageVisible, setIsQuizePageVisible] = useState(false)
   const [isLoading, setLoading] = useState(false)
   const auth = useAuth()
@@ -38,6 +39,8 @@ function App () {
     var arr = variant.split("-");
     if (arr[2].length === 1){var end = parseInt(arr[1]) + 1}else{var end = parseInt(arr[1]) + arr[2].length}
     var finalend = end.toString()
+    var finalstart = parseInt(arr[1])
+    setFinalStart(finalstart)
     //console.log(auth.userData.access_token);
     // console.log(auth)
 
@@ -97,7 +100,7 @@ function App () {
     } else {
       response = await axios({
         method: 'get',
-        url: `https://af-gdi-bn-api-demo.ega-archive.org/beacon-network/v2.0.0/g_variants?start=${arr[1]}&end=${finalend}&alternateBases=${arr[3]}&referenceBases=${arr[2]}&referenceName=${arr[0]}`,
+        url: `https://af-gdi-bn-api-demo.ega-archive.org/beacon-network/v2.0.0/g_variants?start=${arr[1]}&alternateBases=${arr[3]}&referenceBases=${arr[2]}&referenceName=${arr[0]}`,
         //url: `http://localhost:8080/beacon-network/v2.0.0/g_variants`,
         headers: {
           'Content-Type': 'application/json'
@@ -147,7 +150,7 @@ function App () {
           </Row>
 
       {isLoading === true && <div class="loader"></div>}
-          {isLoading === false && <ResultList results={results} metaresults={metaresults} />} {/* changed */}
+          {isLoading === false && <ResultList results={results} metaresults={metaresults} finalstart={finalstart}/>} {/* changed */}
     </Container>
     </div>
     <Footer/>
