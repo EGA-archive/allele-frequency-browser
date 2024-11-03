@@ -100,7 +100,7 @@ function App () {
     } else {
       response = await axios({
         method: 'get',
-        url: `https://af-gdi-bn-api-demo.ega-archive.org/beacon-network/v2.0.0/g_variants?start=${arr[1]}&alternateBases=${arr[3]}&referenceBases=${arr[2]}&referenceName=${arr[0]}`,
+        url: `https://af-gdi-bn-api-demo.ega-archive.org/beacon-network/v2.0.0/g_variants?start=${arr[1]}&alternateBases=${arr[3]}&referenceBases=${arr[2]}&referenceName=${arr[0]}&limit=1`,
         //url: `http://localhost:8080/beacon-network/v2.0.0/g_variants`,
         headers: {
           'Content-Type': 'application/json'
