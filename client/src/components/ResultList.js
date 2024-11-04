@@ -55,7 +55,7 @@ function ResultList ({ results, metaresults, finalstart}) {
       <table style={{width: "100%"}}>
         <tr><th>Beacon</th><th style={{width: "20%"}}>Dataset</th><th style={{width: "11%"}}>Ancestry</th><th style={{width: "11%"}}>Allele Count</th><th style={{width: "11%"}}>Allele Number</th><th style={{width: "16%"}}>Homozygous/ Hemizygous Count</th><th style={{width: "16%"}}>Heterozygous Count</th><th style={{width: "11%"}}>Allele Frequency</th></tr>
         {addedBeacons}</table></div></Box>}
-      {rows.length === 0 && <p>No results found.</p>}
+      {rows.length === 0 && dataset !== '' && <p>No results found.</p>}
       </Row>
     
   );
