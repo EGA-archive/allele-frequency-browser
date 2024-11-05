@@ -5,7 +5,7 @@ import { Box } from '@mui/system';
 import { Row } from 'react-bootstrap';
 
 // changed
-function ResultList ({ results, metaresults, finalstart}) {
+function ResultList ({ results, metaresults, finalstart, error}) {
   // console.log(results)
   console.log(metaresults)
   var i =0
@@ -52,10 +52,11 @@ function ResultList ({ results, metaresults, finalstart}) {
         <b>Results</b>
       </p>
       <div style={{overflowX: "auto"}}>
-      <table style={{width: "100%"}}>
+      <table style={{width: "100%", marginBottom: "20px"}}>
         <tr><th>Beacon</th><th style={{width: "20%"}}>Dataset</th><th style={{width: "11%"}}>Ancestry</th><th style={{width: "11%"}}>Allele Count</th><th style={{width: "11%"}}>Allele Number</th><th style={{width: "16%"}}>Homozygous/ Hemizygous Count</th><th style={{width: "16%"}}>Heterozygous Count</th><th style={{width: "11%"}}>Allele Frequency</th></tr>
         {addedBeacons}</table></div></Box>}
       {rows.length === 0 && dataset !== '' && <p>No results found.</p>}
+      {error !== false && <p class="bi bi-exclamation-triangle exclamation"> There is a problem connecting to the Beacon Network, please try again later.</p>}
       </Row>
     
   );

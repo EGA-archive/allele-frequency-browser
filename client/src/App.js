@@ -22,6 +22,7 @@ function App () {
   const [results, setResults] = useState([]);
   const [metaresults, setMetaResults] = useState([]);
   const [finalstart, setFinalStart] = useState([]);
+  const [error, setError] = useState(false);
   const [isQuizePageVisible, setIsQuizePageVisible] = useState(false)
   const [isLoading, setLoading] = useState(false)
   const auth = useAuth()
@@ -48,7 +49,7 @@ function App () {
       let metaresponse;
       metaresponse = await axios({
         method: 'get',
-        url: `https://af-gdi-bn-api-demo.ega-archive.org/beacon-network/v2.0.0/`,
+        url: `http://localhost:8080/beacon-network/v2.0.0/`,
         //url: `http://localhost:8080/beacon-network/v2.0.0/beacon-network/v2.0.0/g_variants`,
         headers: {
           'Content-Type': 'application/json'
@@ -59,6 +60,7 @@ function App () {
       setMetaResults(metaresponse.data.responses);
     } catch (error) {
       console.error(error);
+      setError(error);
     }
     try {
       jsonData1 = {
@@ -89,7 +91,7 @@ function App () {
         // console.log(auth)
       response = await axios({
         method: 'post',
-        url: `https://af-gdi-bn-api-demo.ega-archive.org/beacon-network/v2.0.0/g_variants`,
+        url: `http://localhost:8080/beacon-network/v2.0.0/g_variants`,
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${auth.userData.access_token}`
@@ -100,7 +102,7 @@ function App () {
     } else {
       response = await axios({
         method: 'get',
-        url: `https://af-gdi-bn-api-demo.ega-archive.org/beacon-network/v2.0.0/g_variants?start=${arr[1]}&alternateBases=${arr[3]}&referenceBases=${arr[2]}&referenceName=${arr[0]}&limit=1`,
+        url: `http://localhost:8080/beacon-network/v2.0.0/g_variants?start=${arr[1]}&alternateBases=${arr[3]}&referenceBases=${arr[2]}&referenceName=${arr[0]}&limit=3`,
         //url: `http://localhost:8080/beacon-network/v2.0.0/g_variants`,
         headers: {
           'Content-Type': 'application/json'
@@ -117,7 +119,7 @@ function App () {
   };
   
   return (
-    <div>
+    <div class="bigparent">
     <div class="parentwrapper">
       <Navbar style={{backgroundImage:"url('/../HeaderBackgroundsvg.svg')",backgroundSize:"cover",height:"111px",width:"100vw",borderWidth:"0", position: "sticky", top: "0", zIndex: "2"}}>
       <a class="gdilogo" onClick={() => {window.location.href="/"}}><img src="/../GDILogowhite.png" class="gdilogo" alt="gdilogo"></img></a>
@@ -149,8 +151,9 @@ function App () {
 
           </Row>
 
-      {isLoading === true && <div class="loader"></div>}
-          {isLoading === false && <ResultList results={results} metaresults={metaresults} finalstart={finalstart}/>} {/* changed */}
+      {isLoading === true && error === false && <div class="loader"></div>}
+          {isLoading === false && error === false && <ResultList results={results} metaresults={metaresults} finalstart={finalstart} error={error}/>} {/* changed */}
+          {error !== false && <ResultList results={results} metaresults={metaresults} finalstart={finalstart} error={error}/>} {/* changed */}
     </Container>
     </div>
     <Footer/>

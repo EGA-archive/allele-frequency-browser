@@ -4,7 +4,16 @@ import React from 'react';
 
 import { Formik } from 'formik';
 import { Col, Form, Row } from 'react-bootstrap';
+import * as Yup from 'yup';
 
+const SignupSchema = Yup.object().shape({
+  variant: Yup.string()
+    .matches(
+      /[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,X]-([+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:[Ee]([+-]?\d+))?-[A,C,G,T]+-[A,C,G,T]+$/,
+          "Incorrect variant information, please check the example below"
+        )
+    .required('Required'),
+});
 
 
 function Search ({ search }) { // changed
@@ -24,20 +33,24 @@ function Search ({ search }) { // changed
           variant: '',
           genome: ''
         }}
+        validationSchema={SignupSchema}
         onSubmit={onSubmit}
       >
+
       {({
         handleChange,
         handleSubmit,
         setFieldValue,
-        values
+        values,
+        errors, 
+        touched
       }) => (
         <Form noValidate onSubmit={handleSubmit}>
           
             <Form.Group controlId="country">
             <Row>
                 
-                <Col lg={5} class="variant">
+                <Col lg={5} class="variant" style={{marginBottom:"-10px"}}>
                 <Form.Label><b>Variant</b></Form.Label>
                     <Form.Control
                     type="search"
@@ -45,7 +58,7 @@ function Search ({ search }) { // changed
                     style={{marginBottom: "20px"}}
                     className="shadow-none"
                     placeholder="Search for a variant (e.g. 13-32398489-A-T)"
-                    value={values.genres}
+                    value={values.variant}
                     onChange={handleChange}
                     />
                     
@@ -64,7 +77,7 @@ function Search ({ search }) { // changed
                   </Form.Select>
                     </Col>
                     <Col class="cohort">
-                    <Form.Label><b>Cohort</b></Form.Label>
+                    <Form.Label><b>Cohort </b><span class="hovertext"><span class="hiddenspan">Group of individuals with a specific disease or condition. Examples: COVID, Rare Diseases or Cancer</span><b class="infocohort">i</b></span></Form.Label>
             
                     <Form.Select 
                     name='cohort'
@@ -90,8 +103,15 @@ function Search ({ search }) { // changed
           <Form.Group as={Row}>
 
           </Form.Group>
+        {touched.variant && errors.variant && <div class="errors">{errors.variant}</div>}
+        <div style={{marginTop:"10px"}}><span>Example: </span><a type="reset" onClick={() => setFieldValue('variant', '3-45864731-T-C')}>
+        <u>3-45864731-T-C</u>
+        </a></div>
         </Form>
+        
       )}
+
+
     </Formik>
   );
 }

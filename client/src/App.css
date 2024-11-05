@@ -38,8 +38,86 @@ input:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
-.parentwrapper{
-  min-height: 95vh;
+.bigparent{
+  display: flex;
+  flex-direction: column;
+  flex-grow:1;
+  justify-content: space-between;
+}
+
+#root{
+  display: flex;
+  height: 100%;
+}
+
+.infocohort{
+  display: inline-block;
+  width: 14.67px;
+  height: 14.67px;
+  line-height: 14.67px;
+  padding: 0px;
+
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+
+  background-color: #6C4D85;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+
+.hiddenspan{
+    visibility: hidden;
+    width: 400px;
+    background-color: white;
+    color: black;
+    border: 1px solid #6C4D85;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    margin-top: -45px;
+    margin-left: -18px;
+    font-size: 11px;
+  }
+
+.hovertext .hiddenspan::after{
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -180px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #6C4D85 transparent transparent transparent;
+    
+  
+  }
+
+
+.hovertext:hover .hiddenspan{
+  visibility: visible;
+  
+
+}
+
+.errors{
+  color: red;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
+
+
+}
+
+.exclamation{
+  color: #7372AD;
+  text-align: center;
+  margin-top: 50px;
 }
 
 .footer{
@@ -362,4 +440,31 @@ transition-timing-function: line;
   margin: auto auto;
   position: absolute;
   text-align: center;
+}
+
+@media (max-width: 1800px){
+	.gdilogo {
+		margin-left: 10%;
+	}
+}
+
+@media (max-width: 1600px){
+	.gdilogo {
+		margin-left: 8%;
+	}
+}
+
+@media (max-width: 1500px){
+	.gdilogo {
+		margin-left: 5%;
+	}
+}
+
+
+
+
+@media (max-width: 700px){
+	.gdilogo {
+		margin-left: 0%;
+	}
 }
