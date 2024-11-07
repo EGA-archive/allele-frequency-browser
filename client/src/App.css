@@ -162,22 +162,31 @@ cursor: pointer;
   border: 1px solid #70154C;
   width: Hug (122px)px;
   height: Fixed (46px)px;
-  padding: 10px 24px 10px 24px;
+  padding: 10px 24px 10px 22px;
   gap: 10px;
   border-radius: 10px 10px 10px 10px;
   border: 1px 0px 0px 0px;
   opacity: 0px;
   background: #F2EAEF;
   font-family: sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   line-height: 16.94px;
   text-align: left;  
   color: #70154C;
   position: relative;
   top:30px;
+}
 
+.button1:disabled{
+  color: grey;
+  background-color: white;
+  border: 1px solid grey;
+}
 
+.button1:disabled:hover{
+  color: grey;
+  background-color: white;
 }
 
 .lupared{
@@ -202,6 +211,15 @@ cursor: pointer;
 
 .button1:hover .lupared{
   background-image: url("../public/lupawhite.svg");
+}
+
+.button1:disabled:hover .lupared{
+  background-image: url("../public/lupagray.svg");
+}
+
+
+.button1:disabled .lupared{
+  background-image: url("../public/lupagray.svg");
 }
 
 .button2{

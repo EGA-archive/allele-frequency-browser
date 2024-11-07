@@ -57,7 +57,7 @@ function Search ({ search }) { // changed
                     name="variant"
                     style={{marginBottom: "20px"}}
                     className="shadow-none"
-                    placeholder="Search for a variant (e.g. 13-32398489-A-T)"
+                    placeholder="Search for a variant"
                     value={values.variant}
                     onChange={handleChange}
                     />
@@ -77,7 +77,7 @@ function Search ({ search }) { // changed
                   </Form.Select>
                     </Col>
                     <Col class="cohort">
-                    <Form.Label><b>Cohort </b><span class="hovertext"><span class="hiddenspan">Group of individuals with a specific disease or condition. Examples: COVID, Rare Diseases or Cancer</span><b class="infocohort">i</b></span></Form.Label>
+                    <Form.Label><b style={{marginRight:"10px"}}>Cohort </b><span class="hovertext"><span class="hiddenspan">Group of individuals with a specific disease or condition. Examples: COVID, Rare Diseases or Cancer</span><b class="infocohort">i</b></span></Form.Label>
             
                     <Form.Select 
                     name='cohort'
@@ -90,7 +90,7 @@ function Search ({ search }) { // changed
 
                     </Col>
                     <div style={{width:"150px", display:"inline"}}>
-              <button className="button1" type='submit' variant='primary'><div class='lupared'></div>Search</button>
+              <button className="button1" type='submit' variant='primary' disabled={errors.variant}><div class='lupared'></div>Search</button>
               {/*<button className="button2 mt-3 ms-2" type='submit' variant='primary' onClick={() => {window.location.href="/"}}>
       Reset
     </button>*/}
@@ -105,7 +105,7 @@ function Search ({ search }) { // changed
           </Form.Group>
         {touched.variant && errors.variant && <div class="errors">{errors.variant}</div>}
         <div style={{marginTop:"10px"}}><span>Example: </span><a type="reset" onClick={() => setFieldValue('variant', '3-45864731-T-C')}>
-        <u>3-45864731-T-C</u>
+        <u style={{color:"blue"}}>3-45864731-T-C</u>
         </a></div>
         </Form>
         
