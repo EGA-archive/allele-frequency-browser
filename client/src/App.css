@@ -70,7 +70,7 @@ input:-webkit-autofill:active{
 
 .hiddenspan{
     visibility: hidden;
-    width: 400px;
+    width: 260px;
     background-color: white;
     color: black;
     border: 1px solid #6C4D85;
@@ -79,7 +79,7 @@ input:-webkit-autofill:active{
     padding: 5px 0;
     position: absolute;
     z-index: 1;
-    margin-top: -45px;
+    margin-top: -28px;
     margin-left: -18px;
     font-size: 11px;
   }
@@ -89,7 +89,7 @@ input:-webkit-autofill:active{
   position: absolute;
   top: 100%;
   left: 50%;
-  margin-left: -180px;
+  margin-left: -110px;
   border-width: 5px;
   border-style: solid;
   border-color: #6C4D85 transparent transparent transparent;

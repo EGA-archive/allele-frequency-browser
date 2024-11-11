@@ -77,7 +77,7 @@ function Search ({ search }) { // changed
                   </Form.Select>
                     </Col>
                     <Col class="cohort">
-                    <Form.Label><b style={{marginRight:"10px"}}>Cohort </b><span class="hovertext"><span class="hiddenspan">Group of individuals with a specific disease or condition. Examples: COVID, Rare Diseases or Cancer</span><b class="infocohort">i</b></span></Form.Label>
+                    <Form.Label><b style={{marginRight:"10px"}}>Cohort </b><span class="hovertext"><span class="hiddenspan">a group of people with a shared characteristic</span><b class="infocohort">i</b></span></Form.Label>
             
                     <Form.Select 
                     name='cohort'
