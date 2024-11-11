@@ -56,7 +56,7 @@ function ResultList ({ results, metaresults, finalstart, error}) {
         <tr><th>Beacon</th><th style={{width: "20%"}}>Dataset</th><th style={{width: "11%"}}>Population</th><th style={{width: "11%"}}>Allele Count</th><th style={{width: "11%"}}>Allele Number</th><th style={{width: "16%"}}>Homozygous/ Hemizygous Count</th><th style={{width: "16%"}}>Heterozygous Count</th><th style={{width: "11%"}}>Allele Frequency</th></tr>
         {addedBeacons}</table></div></Box>}
       {rows.length === 0 && dataset !== '' && <p class="exclamation">No results found.</p>}
-      {isresponse !== '' && rows.length === 0 && dataset === '' && <p class="exclamation">Beacon Network is still running the query. Try it again later to see if you found results.</p>}
+      {isresponse !== '' && rows.length === 0 && dataset === '' && <p class="exclamation">No results found.</p>}
       {error !== false && <p class="bi bi-exclamation-triangle exclamation"> There is a problem connecting to the Beacon Network, please try again later.</p>}
       </Row>
     
