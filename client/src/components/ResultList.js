@@ -33,8 +33,8 @@ function ResultList ({ results, metaresults, finalstart, error}) {
       alleleCountHeterozygous: alleleCHet,
       alleleFrequency: parseFloat(frequency.alleleFrequency.toString().substring(0,6)), })}
 
-  ))}}})}if (isresponse === 'True'){populationrow = rows.map((pr) => <tr><td></td><td>{dataset}</td><td>{pr.population}</td><td>{pr.alleleCount}</td><td>{pr.alleleNumber}</td><td>{pr.alleleCountHomozygous}</td><td>{pr.alleleCountHeterozygous}</td><td>{pr.alleleFrequency}</td></tr>);metaresults.map((meta) => {if (meta.response.id === result.beaconId){beaconName=meta.response.name}});beaconized = <tr><td class="beaconized" colspan="8"><b>{beaconName}</b></td></tr>; addedBeacons.push(beaconized); addedBeacons.push(populationrow); total_count+=1;isresponse='True'};});
-}else{exists='False';isresponse='False'}
+  ))}}})}if (isresponse === 'True'){populationrow = rows.map((pr) => <tr><td></td><td>{dataset}</td><td>{pr.population}</td><td>{pr.alleleCount}</td><td>{pr.alleleNumber}</td><td>{pr.alleleCountHomozygous}</td><td>{pr.alleleCountHeterozygous}</td><td>{pr.alleleFrequency}</td></tr>);metaresults.map((meta) => {if (meta.response && dataset !== '' && meta.response.id === result.beaconId){beaconName=meta.response.name;beaconized = <tr><td class="beaconized" colspan="8"><b>{beaconName}</b></td></tr>;addedBeacons.push(beaconized);addedBeacons.push(populationrow); isresponse='True'}}) };rows=[];dataset='';beaconized=''; total_count+=1;});
+}else{exists='False';isresponse='False';}
   //const arrayDataItems = addedBeacons.map((course) => <div>{course}</div>);
  // document.getElementById('clickme').onclick = sort_by_key(results, 'id');
   // document.getElementById('clickme2').onclick = sort_by_key(results, 'id');
@@ -56,7 +56,7 @@ function ResultList ({ results, metaresults, finalstart, error}) {
         <tr><th>Beacon</th><th style={{width: "20%"}}>Dataset</th><th style={{width: "11%"}}>Population</th><th style={{width: "11%"}}>Allele Count</th><th style={{width: "11%"}}>Allele Number</th><th style={{width: "16%"}}>Homozygous/ Hemizygous Count</th><th style={{width: "16%"}}>Heterozygous Count</th><th style={{width: "11%"}}>Allele Frequency</th></tr>
         {addedBeacons}</table></div></Box>}
       {rows.length === 0 && dataset !== '' && <p class="exclamation">No results found.</p>}
-      {isresponse !== '' && rows.length === 0 && dataset === '' && <p class="exclamation">No results found.</p>}
+      {addedBeacons.length === 0 && total_count !== 0 && <p class="exclamation">No results found.</p>}
       {error !== false && <p class="bi bi-exclamation-triangle exclamation"> There is a problem connecting to the Beacon Network, please try again later.</p>}
       </Row>
     
