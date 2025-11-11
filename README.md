@@ -1,4 +1,4 @@
-# GDI Allele Frequency Brwoser
+# GDI Allele Frequency Browser
 
 ## Intro
 
