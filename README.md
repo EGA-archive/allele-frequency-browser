@@ -2,7 +2,7 @@
 
 ## Intro
 
-Welcome to GDI Allele Frequency Browser.
+:rocket:Welcome to GDI Allele Frequency Browser.
 
 This UI prototype of an allele frequency browser was used for GDI MS8, and works together with a backend implementation of a Beacon Network, that hosts as well allele frequency beacon instances.
 
