@@ -4,7 +4,7 @@
 
 :rocket:Welcome to GDI Allele Frequency Browser.
 
-This UI prototype of an allele frequency browser was used for GDI MS8, and works together with a backend implementation of a Beacon Network, that hosts as well allele frequency beacon instances.
+This UI is a prototype of an allele frequency browser that was used for GDI MS8, and works together with a backend implementation of a Beacon Network, that hosts as well allele frequency beacon instances.
 
 The current MS8 GDI Allele Frequency Browser was deployed linked to a [BSC Beacon Network](https://github.com/elixir-europe/beacon-network-backend) that hosted beacons deployed with [Beacon production implementation](https://github.com/EGA-archive/beacon2-pi-api).
 
