@@ -4,7 +4,7 @@
 
 :rocket:Welcome to GDI Allele Frequency Browser.
 
-This UI is a prototype of an allele frequency browser that was used for the milestone of the project [GDI MS8](https://www.youtube.com/watch?v=XZAKgOPSWKo), and works together with a backend implementation of a Beacon Network, that hosts as well allele frequency beacon instances.
+This UI is a prototype of an Allele Frequency (AF) Browser that was developed in the framework of the Genomic Data Infrastructure (GDI) project as part of [Milestone 8](https://www.youtube.com/watch?v=XZAKgOPSWKo), demonstrating the technical infrastructure of the 1+ Million Genomes initiative. The GDI AF Browser prototype is based on the BSC Beacon Network backend implementation and hosts Beacon v2 Production Implementation instances that present aggregated population-level genomic variation data, such as allele frequency and allele counts.
 
 The current MS8 GDI Allele Frequency Browser was deployed linked to a [BSC Beacon Network](https://github.com/elixir-europe/beacon-network-backend) that hosted beacons deployed with [Beacon production implementation](https://github.com/EGA-archive/beacon2-pi-api).
 
@@ -28,4 +28,4 @@ This will run in http://localhost:3000. If you wish to change the port, just edi
 * [Barcelona Supercomputing Center](https://www.bsc.es/es)
 * [Center for Genomic Regulation](https://www.crg.eu/)
 
-Developed by [European Genome-Phenome Archive](https://ega-archive.org/).
+Developed by [European Genome-Phenome Archive](https://ega-archive.org/) at the [Center for Genomic Regulation](https://www.crg.eu/).
